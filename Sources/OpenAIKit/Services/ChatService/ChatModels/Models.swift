@@ -29,7 +29,7 @@ public struct ChatMessage: Codable {
     }
 }
 
-public struct ChatConversationInput: Encodable {
+public struct ChatInput: Encodable {
     
     let messages: [ChatMessage]
     let model: String

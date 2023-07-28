@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct OpenAIResponse<T: Payload>: Codable {
+public struct APIResponse<T: Payload>: Codable {
     
     public let object: String?
     public let model: String?
