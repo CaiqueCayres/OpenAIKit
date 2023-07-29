@@ -7,14 +7,24 @@
 
 import Foundation
 
-
+/// Protocol to define the requirements for making a network request.
+///
+/// Conforming types must specify a path, method, and base URL for the request.
 public protocol NetworkRequest {
     
+    /// The path of the request.
     var path: String { get }
+    
+    /// The HTTP method of the request.
     var method: String { get }
+    
+    /// The base URL of the request.
     var baseUrl: String { get }
 }
 
+/// Represents the endpoints of the OpenAI API.
+///
+/// Cases represent different functionalities provided by the API.
 public enum Endpoint {
     
     case completions
@@ -28,6 +38,9 @@ public enum Endpoint {
 
 extension Endpoint: NetworkRequest {
     
+    /// The path of the request.
+    ///
+    /// Different cases have different paths based on the functionality they represent.
     public var path: String {
         switch self {
         case .completions:
@@ -47,6 +60,9 @@ extension Endpoint: NetworkRequest {
         }
     }
     
+    /// The HTTP method of the request.
+    ///
+    /// Different cases use different methods based on the functionality they represent.
     public var method: String {
         switch self {
         case .completions,
@@ -61,6 +77,9 @@ extension Endpoint: NetworkRequest {
         }
     }
     
+    /// The base URL of the request.
+    ///
+    /// All requests have the same base URL.
     public var baseUrl: String {
         switch self {
         default:

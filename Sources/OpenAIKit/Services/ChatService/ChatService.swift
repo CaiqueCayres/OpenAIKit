@@ -46,10 +46,9 @@ extension ChatService: ChatServiceProtocol {
         
         let endpoint: Endpoint = .chat
         
-        let body = ChatInput(messages: messages,
-                             model: self.model.modelName,
+        let body = ChatInput(model: self.model.modelName,
+                             messages: messages,
                              functions: self.functions,
-                             user: self.user,
                              temperature: self.temperature,
                              topProbabilityMass: self.topProbabilityMass,
                              choices: self.choices,
@@ -57,7 +56,8 @@ extension ChatService: ChatServiceProtocol {
                              maxTokens: self.maxTokens,
                              presencePenalty: self.presencePenalty,
                              frequencyPenalty: self.frequencyPenalty,
-                             logitBias: self.logitBias)
+                             logitBias: self.logitBias,
+                             user: self.user)
         
         return try await service.perform(request: endpoint, prompt: body)
     }
